@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<link href="./images/info.svg" rel="icon">
+	<link href="./css/main.css" rel="stylesheet">
+	<script src="./js/main.js"></script>
+	<title>Demo - Random Sexy Img</title>
+</head>
+<body>
+	<div class="main-window">
+		<div class="left-setting-zone">
+			<label for="type"></label><input type="text" id="type" placeholder="api前綴，如fur或gay。">
+			<h6 id="type-check"></h6>
+			<button class="button" id="send-request">現在就發送一個GET請求！</button>
+			<br>
+			<code id="return-data"></code>
+			<button class="button" id="request-img-to-preview">你看到上面的返回數據了嗎？按這裏請求圖片！</button>
+			<code id="img-states"></code>
+		</div>
+		<div class="right-img-preview" id="right-img-preview">
+			<img id="img-preview" src="" alt="">
+		</div>
+	</div>
+	<div class="copyright">
+		<h4>Copyright kobe-koto
+			&nbsp;|&nbsp;
+			Under AGPL-3.0
+			&nbsp;|&nbsp;
+			Open Source Code in <a href="">GitHub</a>
+		</h4>
+	</div>
+</body>
+</html>
