@@ -1,13 +1,13 @@
 @charset "UTF-8";
-/* copyright kobe-koto */
+/* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 * {
     font-family: 'Segoe UI', 'Segoe WP', Arial, Sans-Serif, system-ui, serif;
 }
 a:link,a:visited {
     text-decoration: none;
-    border: 2px #ffffff;
+    border: 2px #000000;
     border-bottom-style: dotted;
-    color: #ffffff;
+    color: #000000;
 }
 a:link:hover,a:visited:hover {
     border-bottom-style: solid;
@@ -62,15 +62,25 @@ code {
     padding: 10px;
     margin: 6px 6px 12px;
 }
+h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+    word-wrap: break-word;
+}
 .main-window {
     width: 100%;
     height: 90vh;
     display: flex;
+    overflow: hidden;
 }
 .copyright {
     width: 100%;
     height: 10vh;
     display: block;
+    border-right: #ffffff;
+    border-width: 1px;
+    border-style: dotted;
+    text-align: center;
+    background-color: #ffffff;
 }
 .left-setting-zone {
     height: 100vh;

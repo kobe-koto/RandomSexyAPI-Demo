@@ -1,5 +1,5 @@
-/* encoding: UTF-8 */
-
+/* Encoding: UTF-8 */
+/* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 window.onload = function () {
 	document.getElementById("type").value = "fur";
 	document.getElementById("send-request").onclick = function () {
@@ -38,10 +38,11 @@ window.onload = function () {
 	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
 		if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay") {
 			document.getElementById("type-check").innerHTML = "符合預期，檢查通過。";
-			setTimeout(function () {
+			clearTip = setTimeout(function () {
 				document.getElementById("type-check").style.display = "none";
 			},10000)
 		} else {
+			clearTimeout(clearTip);
 			document.getElementById("type-check").innerHTML = "這不符合預期，應爲fur或gay。";
 			document.getElementById("type-check").style.display = "block";
 		}
