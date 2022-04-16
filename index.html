@@ -8,27 +8,28 @@
 	<title>Demo - Random Sexy Img</title>
 </head>
 <body>
-	<div class="main-window">
-		<div class="left-setting-zone">
-			<label for="type"></label><input type="text" id="type" placeholder="api前綴，如fur或gay。">
-			<h6 id="type-check"></h6>
-			<button class="button" id="send-request">現在就發送一個GET請求！</button>
-			<br>
-			<code id="return-data"></code>
-			<button class="button" id="request-img-to-preview">你看到上面的返回數據了嗎？按這裏請求圖片！</button>
-			<code id="img-states"></code>
+	<div class="main-window" id="main-window">
+		<div class="left-setting-zone" id="left-setting-zone">
+			<div id="settings">
+				<label for="type"></label><input type="text" id="type" placeholder="api前綴，如fur或gay。">
+				<h6 id="type-check"></h6>
+				<button class="button" id="send-request">現在就發送一個GET請求！</button>
+				<br>
+				<code id="return-data">先發起一個請求！</code>
+				<button class="button" id="request-img-to-preview">你看到上面的返回數據了嗎？按這裏請求圖片！</button>
+				<code id="img-states">先發起一個請求！</code>
+			</div>
+			<h4 id="copyright">Copyright kobe-koto
+				<br>
+				Under AGPL-3.0
+				<br>
+				Open Source Code in <a href="https://github.com/kobe-koto/RandomSexyAPI-Demo">GitHub</a>
+			</h4>
 		</div>
+		<div id="resize"><div></div></div>
 		<div class="right-img-preview" id="right-img-preview">
 			<img id="img-preview" src="" alt="">
 		</div>
-	</div>
-	<div class="copyright">
-		<h4>Copyright kobe-koto
-			&nbsp;|&nbsp;
-			Under AGPL-3.0
-			&nbsp;|&nbsp;
-			Open Source Code in <a href="https://github.com/kobe-koto/RandomSexyAPI-Demo">GitHub</a>
-		</h4>
 	</div>
 </body>
 </html>

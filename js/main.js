@@ -1,7 +1,6 @@
 /* Encoding: UTF-8 */
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 window.onload = function () {
-	document.getElementById("type").value = "fur";
 	document.getElementById("send-request").onclick = function () {
 		var request = new XMLHttpRequest();
 		request.open("GET","https://" + document.getElementById("type").value + ".random-sexy-img.koto.workers.dev/114514.index?value=1919810", true);
@@ -42,9 +41,40 @@ window.onload = function () {
 				document.getElementById("type-check").style.display = "none";
 			},10000)
 		} else {
-			clearTimeout(clearTip);
+			if (window.clearTip == undefined) {
+				clearTip = setTimeout(function () {},0);
+			}
+			if (clearTip != null || clearTip != undefined) {
+				clearTimeout(clearTip);
+			}
 			document.getElementById("type-check").innerHTML = "這不符合預期，應爲fur或gay。";
 			document.getElementById("type-check").style.display = "block";
 		}
+	}
+
+	var resize = document.getElementById("resize");
+	var left = document.getElementById("left-setting-zone");
+	var right = document.getElementById("right-img-preview");
+	var box = document.getElementById("main-window");
+	resize.onmousedown = function(e){
+		var startX = e.clientX;
+		resize.left = resize.offsetLeft;
+		document.onmousemove = function(e){
+			var endX = e.clientX;
+
+			var moveLen = resize.left + (endX - startX);
+			var maxT = box.clientWidth - resize.offsetWidth;
+			if(moveLen<235) moveLen = 235;
+			if(moveLen>maxT-235) moveLen = maxT-235;
+
+			resize.style.left = moveLen;
+			left.style.width = moveLen + "px";
+			right.style.width = (box.clientWidth - moveLen - 5) + "px";
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+		return false;
 	}
 }
