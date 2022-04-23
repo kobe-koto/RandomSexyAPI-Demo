@@ -94,10 +94,16 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 3px;
 	box-shadow: none;
 	color: #53727d;/* 錆御納戸 */
+	user-select: none;
+	cursor: pointer;
 	padding: 5px;
 	margin: 6px 6px 16px;
 	/*noinspection CssInvalidPropertyValue*/
 	width: -webkit-fill-available;
+}
+.disabled {
+	cursor: not-allowed;
+	filter: brightness(0.6);
 }
 #type {
 	border: #646464;
@@ -136,4 +142,10 @@ h1, h2, h3, h4, h5, h6 {
 #copyright {
 	text-align: center;
 	color: #ffffff;
+}
+#img-preview {
+	filter: blur(12px);
+}
+#img-preview:hover {
+	filter: none;
 }

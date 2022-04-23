@@ -1,24 +1,40 @@
 /* Encoding: UTF-8 */
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 window.onload = function () {
+
+	if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay") {
+		document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
+		document.getElementById("send-request").className = "button";
+		document.getElementById("send-request").disabled = true;
+	} else {
+		document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay. ";
+		document.getElementById("type-check").style.display = "block";
+		document.getElementById("send-request").className = "button disabled";
+		document.getElementById("send-request").disabled = true;
+	}
+
 	document.getElementById("send-request").onclick = function () {
 		var request = new XMLHttpRequest();
 		request.open("GET","https://" + document.getElementById("type").value + ".random-sexy-img.koto.workers.dev/114514.index?value=1919810", true);
 		request.send();
-		document.getElementById("return-data").innerHTML = "正在進行GET請求，請坐和放寬。";
+		document.getElementById("return-data").innerHTML = "正在進行GET請求, 請坐和放寬. ";
 		request.onload = function () {
 			request.onerror = function () {};
 			document.getElementById("return-data").innerHTML = request.response;
 			ReturnJSON = JSON.parse(request.response);
+
+			document.getElementById("request-img-to-preview").disabled = false;
+			document.getElementById("request-img-to-preview").className = "button";
+			document.getElementById("request-img-to-preview").title = "按這裏請求圖像! 就是這裏! ";
 		}
 		request.onerror = function () {
 			request.onload = function () {}
-			document.getElementById("return-data").innerHTML = "無法完成請求。請再試一遍。如果仍無法請求，請聯係admin@koto.cc反饋問題。";
+			document.getElementById("return-data").innerHTML = "無法完成請求. 請再試一遍. 如果仍無法請求, 請聯係admin@koto.cc反饋問題. ";
 		}
 	}
 	document.getElementById("request-img-to-preview").onclick = function () {
 		document.getElementById("img-preview").src = ReturnJSON.url;
-		document.getElementById("img-states").innerHTML = "正在進行請求，請坐和放寬。";
+		document.getElementById("img-states").innerHTML = "正在進行請求, 請坐和放寬. ";
 		document.getElementById("img-preview").onload = function () {
 			document.getElementById("img-preview").onerror = function () {};
 			if (document.getElementById("img-preview").offsetWidth > document.getElementById('right-img-preview').offsetWidth) {
@@ -27,28 +43,28 @@ window.onload = function () {
 			if (document.getElementById("img-preview").offsetHeight > document.getElementById('right-img-preview').offsetHeight) {
 				document.getElementById("img-preview").style.Height='100%';
 			}
-			document.getElementById("img-states").innerHTML = "請求成功。";
+			document.getElementById("request-img-to-preview").className = "button disabled";
+			document.getElementById("request-img-to-preview").disabled = true;
+			document.getElementById("request-img-to-preview").title = "你已經請求過圖像了吧! ";
+			document.getElementById("img-states").innerHTML = "請求成功. ";
 		}
+
 		document.getElementById("img-preview").onerror = function () {
 			document.getElementById("img-preview").onload = function () {};
-			document.getElementById("img-states").innerHTML = "我們無法完成請求。請再試一遍。如果仍無法請求，請聯係admin@koto.cc反饋問題。";
+			document.getElementById("img-states").innerHTML = "我們無法完成請求. 請再試一遍. 如果仍無法請求, 請聯係admin@koto.cc反饋問題. ";
 		}
 	}
+
 	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
 		if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay") {
-			document.getElementById("type-check").innerHTML = "符合預期，檢查通過。";
-			clearTip = setTimeout(function () {
-				document.getElementById("type-check").style.display = "none";
-			},10000)
+			document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
+			document.getElementById("send-request").className = "button";
+			document.getElementById("send-request").disabled = false;
 		} else {
-			if (window.clearTip == undefined) {
-				clearTip = setTimeout(function () {},0);
-			}
-			if (clearTip != null || clearTip != undefined) {
-				clearTimeout(clearTip);
-			}
-			document.getElementById("type-check").innerHTML = "這不符合預期，應爲fur或gay。";
+			document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay. ";
 			document.getElementById("type-check").style.display = "block";
+			document.getElementById("send-request").className = "button disabled";
+			document.getElementById("send-request").disabled = true;
 		}
 	}
 
