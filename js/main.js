@@ -2,12 +2,12 @@
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 window.onload = function () {
 
-	if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay") {
+	if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay" || document.getElementById("type").value == "transfur") {
 		document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
 		document.getElementById("send-request").className = "button";
 		document.getElementById("send-request").disabled = true;
 	} else {
-		document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay. ";
+		document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
 		document.getElementById("type-check").style.display = "block";
 		document.getElementById("send-request").className = "button disabled";
 		document.getElementById("send-request").disabled = true;
