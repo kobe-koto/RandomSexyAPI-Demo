@@ -2,6 +2,10 @@
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 * {
 	font-family: 'Segoe UI', 'Segoe WP', Arial, Sans-Serif, system-ui, serif;
+	transition: all 0.3s ease-out;
+}
+#left-setting-zone,#right-img-preview,#resize {
+	transition: none;
 }
 a:link,a:visited {
 	text-decoration: none;
@@ -145,6 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #img-preview {
 	filter: blur(12px);
+	display: block;
 }
 #img-preview:hover {
 	filter: none;

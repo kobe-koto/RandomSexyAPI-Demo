@@ -15,7 +15,7 @@ window.onload = function () {
 
 	document.getElementById("send-request").onclick = function () {
 		var request = new XMLHttpRequest();
-		request.open("GET","https://" + document.getElementById("type").value + ".random-sexy-img.koto.workers.dev/114514.index?value=1919810", true);
+		request.open("GET","https://api.koto.cc/rsi/" + document.getElementById("type").value, true);
 		request.send();
 		document.getElementById("return-data").innerHTML = "正在進行GET請求, 請坐和放寬. ";
 		request.onload = function () {
@@ -56,12 +56,12 @@ window.onload = function () {
 	}
 
 	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
-		if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay") {
+		if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay" || document.getElementById("type").value == "transfur") {
 			document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
 			document.getElementById("send-request").className = "button";
 			document.getElementById("send-request").disabled = false;
 		} else {
-			document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay. ";
+			document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
 			document.getElementById("type-check").style.display = "block";
 			document.getElementById("send-request").className = "button disabled";
 			document.getElementById("send-request").disabled = true;
