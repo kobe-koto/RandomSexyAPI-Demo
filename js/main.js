@@ -1,7 +1,7 @@
 /* Encoding: UTF-8 */
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 const ApiURL = "https://rsi.koto.cc/";
-const availableType = ["fur","gay","transfur"]
+const availableType = ["fur","gay","transfur"];
 function CheckType (TypeNow) {
 	for (var i=0;i<availableType.length;i++) {
 		if (TypeNow.toLowerCase()  == availableType[i].toLowerCase() ) {
@@ -11,7 +11,15 @@ function CheckType (TypeNow) {
 			return null;
 		}
 	}
-	document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
+
+	for (var e=0,Word="這不符合預期, 應爲";e<availableType.length;e++) {
+		if (e == availableType.length-1) {
+			Word = Word + availableType[e].toLowerCase() + ". ";
+			document.getElementById("type-check").innerHTML = Word;
+		} else {
+			Word = Word + availableType[e].toLowerCase() + "或";
+		}
+	}
 	document.getElementById("type-check").style.display = "block";
 	document.getElementById("send-request").className = "button disabled";
 	document.getElementById("send-request").disabled = true;
@@ -19,6 +27,16 @@ function CheckType (TypeNow) {
 window.onload = function () {
 
 	CheckType (document.getElementById("type").value);
+
+	for (var e=0,Word="api前綴，如";e<availableType.length;e++) {
+		if (e == availableType.length-1) {
+			Word = Word + availableType[e].toLowerCase() + ". ";
+			document.getElementById("type").placeholder = Word;
+		} else {
+			Word = Word + availableType[e].toLowerCase() + "或";
+		}
+	}
+
 
 	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
 		CheckType (document.getElementById("type").value);
