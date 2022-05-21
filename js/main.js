@@ -1,22 +1,32 @@
 /* Encoding: UTF-8 */
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
+const ApiURL = "https://rsi.koto.cc/";
+const availableType = ["fur","gay","transfur"]
+function CheckType (TypeNow) {
+	for (var i=0;i<availableType.length;i++) {
+		if (TypeNow.toLowerCase()  == availableType[i].toLowerCase() ) {
+			document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
+			document.getElementById("send-request").className = "button";
+			document.getElementById("send-request").disabled = false;
+			return null;
+		}
+	}
+	document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
+	document.getElementById("type-check").style.display = "block";
+	document.getElementById("send-request").className = "button disabled";
+	document.getElementById("send-request").disabled = true;
+}
 window.onload = function () {
 
-	if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay" || document.getElementById("type").value == "transfur") {
-		document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
-		document.getElementById("send-request").className = "button";
-		document.getElementById("send-request").disabled = true;
-	} else {
-		document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
-		document.getElementById("type-check").style.display = "block";
-		document.getElementById("send-request").className = "button disabled";
-		document.getElementById("send-request").disabled = true;
+	CheckType (document.getElementById("type").value);
+
+	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
+		CheckType (document.getElementById("type").value);
 	}
 
 	document.getElementById("send-request").onclick = function () {
 		var request = new XMLHttpRequest();
-		request.open("GET","https://api.koto.cc/rsi/" + document.getElementById("type").value, true);
-		request.send();
+		request.open("GET",ApiURL + document.getElementById("type").value, true);
 		document.getElementById("return-data").innerHTML = "正在進行GET請求, 請坐和放寬. ";
 		request.onload = function () {
 			request.onerror = function () {};
@@ -31,17 +41,16 @@ window.onload = function () {
 			request.onload = function () {}
 			document.getElementById("return-data").innerHTML = "無法完成請求. 請再試一遍. 如果仍無法請求, 請聯係admin@koto.cc反饋問題. ";
 		}
+
+		request.send(); // 🚀🚀🚀
 	}
 	document.getElementById("request-img-to-preview").onclick = function () {
-		document.getElementById("img-preview").src = ReturnJSON.url;
+		document.getElementById("img-preview").src = ReturnJSON.url;// 超級多的🚀！
 		document.getElementById("img-states").innerHTML = "正在進行請求, 請坐和放寬. ";
 		document.getElementById("img-preview").onload = function () {
 			document.getElementById("img-preview").onerror = function () {};
 			if (document.getElementById("img-preview").offsetWidth > document.getElementById('right-img-preview').offsetWidth) {
 				document.getElementById("img-preview").style.width='100%';
-			}
-			if (document.getElementById("img-preview").offsetHeight > document.getElementById('right-img-preview').offsetHeight) {
-				document.getElementById("img-preview").style.Height='100%';
 			}
 			document.getElementById("request-img-to-preview").className = "button disabled";
 			document.getElementById("request-img-to-preview").disabled = true;
@@ -55,18 +64,7 @@ window.onload = function () {
 		}
 	}
 
-	document.getElementById("type").onkeypress = document.getElementById("type").onkeydown = document.getElementById("type").onkeyup = function () {
-		if (document.getElementById("type").value == "fur" || document.getElementById("type").value == "gay" || document.getElementById("type").value == "transfur") {
-			document.getElementById("type-check").innerHTML = "符合預期, 檢查通過. ";
-			document.getElementById("send-request").className = "button";
-			document.getElementById("send-request").disabled = false;
-		} else {
-			document.getElementById("type-check").innerHTML = "這不符合預期, 應爲fur或gay或transfur. ";
-			document.getElementById("type-check").style.display = "block";
-			document.getElementById("send-request").className = "button disabled";
-			document.getElementById("send-request").disabled = true;
-		}
-	}
+
 
 	var resize = document.getElementById("resize");
 	var left = document.getElementById("left-setting-zone");
