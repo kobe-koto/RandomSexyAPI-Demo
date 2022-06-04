@@ -1,6 +1,7 @@
 /* Encoding: UTF-8 */
 /* Copyright kobe-koto | Under AGPL-3.0 | Open Source Code in GitHub */
 const ApiURL = "https://rsi.koto.cc/";
+const ApiType = "?type=json";
 const availableType = ["fur","gay","transfur"];
 function CheckType (TypeNow) {
 	for (var i=0;i<availableType.length;i++) {
@@ -24,7 +25,16 @@ function CheckType (TypeNow) {
 	document.getElementById("send-request").className = "button disabled";
 	document.getElementById("send-request").disabled = true;
 }
+
+function onResize () {
+	document.getElementById("settings").style.height = document.getElementById("main-window").clientHeight - document.getElementById("copyright").clientHeight + "px";
+}
 window.onload = function () {
+
+
+
+	// window.onresize = function () {onResize ()};
+	// onResize ();
 
 	CheckType (document.getElementById("type").value);
 
@@ -44,7 +54,8 @@ window.onload = function () {
 
 	document.getElementById("send-request").onclick = function () {
 		var request = new XMLHttpRequest();
-		request.open("GET",ApiURL + document.getElementById("type").value, true);
+		var requestURL = ApiURL + document.getElementById("type").value + ApiType;
+		request.open("GET",requestURL,true);
 		document.getElementById("return-data").innerHTML = "正在進行GET請求, 請坐和放寬. ";
 		request.onload = function () {
 			request.onerror = function () {};
